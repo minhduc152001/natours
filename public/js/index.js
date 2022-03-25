@@ -68,7 +68,7 @@ const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:5000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
@@ -91,7 +91,7 @@ const signup = async (name, email, password, passwordConfirm) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:5000/api/v1/users/signup',
+      url: '/api/v1/users/signup',
       data: {
         name,
         email,
@@ -116,7 +116,7 @@ const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:5000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
 
     if (res.data.status === 'success') location.reload(true);
@@ -130,8 +130,8 @@ const updateSettings = async (data, type) => {
   try {
     const url =
       type === 'password'
-        ? 'http://localhost:5000/api/v1/users/updateMyPassword'
-        : 'http://localhost:5000/api/v1/users/updateMe';
+        ? '/api/v1/users/updateMyPassword'
+        : '/api/v1/users/updateMe';
 
     const res = await axios({
       method: 'PATCH',
@@ -187,7 +187,6 @@ if (userDataForm)
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
 
     updateSettings(form, 'data');
   });
@@ -219,17 +218,13 @@ const stripe = Stripe(
 const bookTour = async tourId => {
   try {
     // 1) Get checkou session from API
-    const session = await axios(
-      `http://localhost:5000/api/v1/bookings/checkout-session/${tourId}`
-    );
-    console.log(session);
+    const session = await axios(`/api/v1/bookings/checkout-session/${tourId}`);
 
     // 2) Create checkout form + charge creadit card
     await stripe.redirectToCheckout({
       sessionId: session.data.session.id
     });
   } catch (error) {
-    console.log(error);
     showAlert('error', error);
   }
 };

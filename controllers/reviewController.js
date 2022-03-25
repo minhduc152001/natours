@@ -16,7 +16,6 @@ exports.isBookedByUser = async (req, res, next) => {
     tour: req.params.tourId,
     user: req.user.id
   });
-  console.log(booking);
   if (!booking)
     return next(new AppError('You must take tour before reviewing', 403));
   else return next();
