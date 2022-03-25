@@ -4,7 +4,8 @@
   "description": "Learn node, express and mongoDB on UDEMY",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=product&&nodemon server.js",
     "debug": "ndb server.js"
   },
