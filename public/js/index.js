@@ -162,15 +162,14 @@ if (mapBox) {
   displayMap(locations);
 }
 
-if (loginForm && !signupForm)
+if (loginForm)
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
-  });
-
-if (signupForm && !loginForm)
+  })
+else if (signupForm)
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = document.getElementById('email').value;

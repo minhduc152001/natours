@@ -51,16 +51,3 @@ exports.getAllBookings = factory.getAll(Booking);
 exports.updateBooking = factory.updateOne(Booking);
 exports.deleteBooking = factory.deleteOne(Booking);
 exports.getBooking = factory.getOne(Booking);
-
-exports.bookings = catchAsync(async (req, res, next) => {
-  const tourOrUser = req.params.tourId ? 'tour' : 'user';
-
-  const bookings = await Booking.find({
-    [tourOrUser]: req.params.tourId || req.params.userId
-  });
-  res.status(200).json({
-    status: 'success',
-    result: bookings.length,
-    data: bookings
-  });
-});

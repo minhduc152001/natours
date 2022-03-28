@@ -39,8 +39,6 @@ router.patch('/updateMyPassword', updatePassword);
 router.patch('/updateMe', uploadUserPhoto, resizeUserPhoto, updateMe);
 router.delete('/deleteMe', deleteMe);
 
-router.route('/:userId/bookings').get(bookings);
-
 router.use(restrictTo('admin'));
 
 router

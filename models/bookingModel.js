@@ -33,20 +33,6 @@ bookingSchema.pre(/^find/, function(next) {
   next();
 });
 
-// Check if the date of tour is full
-bookingSchema.pre('save', async function(next) {
-  const tour = await Tour.findById(this.tour);
-  const startDate = tour.startDates.id(this.date);
- 
-  // If there is a maximum number of participants, throw an error.
-  if (startDate.participants >= startDate.maxParticipants)
-    return next(new AppError('Sorry, but this tour has a maximum number of participants already. Please book another date.'));
-  
-  startDate.participants++;
-  await tour.save();
-  next();
-});
-
 const Booking = mongoose.model('Booking', bookingSchema);
 
 module.exports = Booking;

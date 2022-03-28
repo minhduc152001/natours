@@ -79,11 +79,7 @@ const tourSchema = new mongoose.Schema(
     startDates: [
       {
         type: Date,
-        required: [true, 'A tour must have a start date'],
-        participants: {
-          type: Number,
-          default: 0
-        }
+        required: [true, 'A tour must have a start date']
       }
     ],
     secretTour: {
@@ -197,8 +193,6 @@ tourSchema.pre('aggregate', function(next) {
   }
   next();
 });
-
-
 
 const Tour = mongoose.model('Tour', tourSchema);
 

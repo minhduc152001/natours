@@ -60,6 +60,4 @@ router
   )
   .delete(protect, restrictTo('admin', 'lead-guide'), deleteTour);
 
-router.route('/:tourId/bookings').get(bookings);
-
 module.exports = router;
