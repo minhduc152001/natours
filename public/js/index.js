@@ -56,11 +56,11 @@ const hideAlert = () => {
   if (el) el.parentElement.removeChild(el);
 };
 
-const showAlert = (type, msg) => {
+const showAlert = (type, msg, time = 5) => {
   hideAlert();
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  window.setTimeout(hideAlert, 5000);
+  window.setTimeout(hideAlert, time * 1000);
 };
 
 // LOGIN
@@ -168,7 +168,7 @@ if (loginForm)
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
-  })
+  });
 else if (signupForm)
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -234,3 +234,6 @@ if (bookBtn)
     const { tourId } = e.target.dataset; // beacause of converting data-tour-id --> tourId
     bookTour(tourId);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 20);

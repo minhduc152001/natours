@@ -3,6 +3,13 @@ const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 
+exports.alerts = (req, res, next) => {
+  const { alert } = req.query;
+  if (alert === 'booking')
+    res.locals.alert =
+      "Your booking was successful! Please check email for a confirmation.\nIf you don't see the booking, please come back later.";
+};
+
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1) Get tour data from collection
   const tours = await Tour.find();
@@ -38,11 +45,11 @@ exports.getLoginForm = (req, res) => {
   });
 };
 
-exports.getSignUpForm = (req,res,)=>{
+exports.getSignUpForm = (req, res) => {
   res.status(200).render('signup', {
     title: 'Register'
-  })
-}
+  });
+};
 
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
@@ -79,4 +86,3 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updateUser
   });
 });
-
