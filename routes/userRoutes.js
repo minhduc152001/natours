@@ -9,7 +9,6 @@ const {
   restrictTo,
   logout
 } = require('../controllers/authController');
-const { bookings } = require('../controllers/bookingController');
 
 const {
   createUser,
