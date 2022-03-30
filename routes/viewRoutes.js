@@ -12,7 +12,7 @@ router.get('/login', authController.isLoggedIn, viewController.getLoginForm);
 router.get('/me', authController.protect, viewController.getAccount);
 router.get(
   '/my-tours',
-  bookingController.createBookingCheckout,
+  // bookingController.createBookingCheckout,
   authController.protect,
   viewController.getMyTours
 );
